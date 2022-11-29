@@ -1,0 +1,35 @@
+.container-img {
+  display: flex;
+  margin: 200px auto;
+}
+
+.img-mini {
+  max-height: 160px;
+  margin: auto;
+  border: .1px solid black;
+  transition: transform 0.6s;
+}
+
+/* .img:hover {
+  transform: scale(1.5);
+} */
+
+/* .img.scale-3:hover {
+    transform: scale(1.5);
+} */
+
+/* .scale-2 {
+  transform: scale(2);
+}
+
+.scale-3 {
+  transform: scale(3);
+}
+
+.scale-4 {
+  transform: scale(4);
+}
+
+.scale-5 {
+  transform: scale(5);
+} */

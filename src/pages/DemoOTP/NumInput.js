@@ -1,12 +1,11 @@
 import { useState } from "react";
 function NumInput({ type, lable, value, numMax, callBack }) {
-
   const handler = (event) => {
     if (+event.target.value > numMax) {
       event.target.value = numMax;
     }
     value = event.target.value;
-    callBack(value)
+    callBack(value);
   };
 
   return (

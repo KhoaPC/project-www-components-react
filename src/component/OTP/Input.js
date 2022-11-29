@@ -8,9 +8,10 @@ function Input({
   setNewIndex,
   placeholder,
 }) {
-  const ref = useRef();
   const [myValue, setMyValue] = useState(value);
   const [isBackSpace, setIsBackSpace] = useState();
+  const ref = useRef();
+
   useEffect(() => {
     if (focused) {
       ref.current.focus();
@@ -18,21 +19,28 @@ function Input({
     }
   }, [focused]);
 
-  useEffect(() => {}, [isBackSpace]);
-
   const handlerKeyDown = (event) => {
     const KEY_NAME_BACKSPACE = "Backspace";
-
     setIsBackSpace(event.key === KEY_NAME_BACKSPACE);
+
     if (event.key === KEY_NAME_BACKSPACE && event.target.value) {
       setNewIndex(index);
-      event.target.value = "";
+    } else if (event.key === KEY_NAME_BACKSPACE && !event.target.value) {
+      event.preventDefault();
+      setNewIndex(index - 1);
     } else if (event.key === KEY_NAME_BACKSPACE) {
       setNewIndex(index - 1);
     }
+    return;
   };
 
   const handlerOnchange = () => {
+    setIsBackSpace((prev) => {
+      if (!ref.current.value) {
+        return !prev;
+      }
+    });
+
     setMyValue(ref.current.value);
     updateValue(index, ref.current.value);
 
