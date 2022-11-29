@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Nav from "./deafaultLayout/Header/Header";
+import Home from "./pages/Home/Home";
+import DemoOTP from "./pages/DemoOTP/DemoOTP";
+import Page404 from "./pages/Page404/Page404";
+import ZoomImg from "./component/ZoomImg/ZoomImg";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/OTP" element={<DemoOTP />}></Route>
+        <Route path="/img" element={<ZoomImg />}></Route>
+        <Route path="/*" element={<Page404 />}></Route>
+      </Routes>
+    </Router>
   );
 }
-
+{
+  /* <OTP inputNum={6} separator="-"></OTP> */
+}
 export default App;
