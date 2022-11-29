@@ -1,0 +1,22 @@
+
+.navbar{
+    margin-left: 40px;
+}
+ 
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    height: 28px;
+    font-size: 18px;
+    color: #333;
+    padding: 6px;
+}
+
+.form .title{
+    color: #888;
+    margin: 20px 0 6px 0;
+}
+
