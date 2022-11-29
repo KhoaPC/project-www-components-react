@@ -1,0 +1,26 @@
+.container_OTP {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.input {
+  max-width: 40px;
+  min-height: 40px;
+  font-size: 30px;
+  text-align: center;
+  color: #333;
+}
+
+.input::placeholder{
+  color: #bcbcbc ;
+}
+
+.separator {
+  margin: 8px;
+}
+
+.wrap-input {
+  display: flex;
+  align-items: center;
+}
