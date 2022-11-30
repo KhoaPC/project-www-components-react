@@ -1,28 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-function Form({ type, lable, value, numMax, callBack }) {
-  const ref = useRef();
+export default function Form2({ label, type, numMax, todoOnChange }) {
   const handler = (event) => {
-    if (numMax && +ref.current.value > numMax) {
-      ref.current.value = numMax;
+    if (+event.target.value > numMax) {
+      event.target.value = numMax;
     }
-    value = ref.current.value;
-    callBack(value);
+    todoOnChange(event.target.value);
   };
 
   return (
-    <form className="form">
-      <label className="title">{lable}</label>
-      <input
-        ref={ref}
-        onChange={(event) => {
-          handler(event);
-        }}
-        value={value || ""}
-        type={type}
-      />
-    </form>
+    <div className="form">
+      <label className="title">{label}</label>
+      <input type={type} onChange={(event) => handler(event)} />
+    </div>
   );
-}
-
-export default Form;
+} // Form2
