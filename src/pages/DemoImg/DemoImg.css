@@ -9,3 +9,30 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
+
+.icon{
+  font-size: 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  z-index: 100000000000000000;
+}
+
+.zoom-out {
+  margin-right: 50px;
+}
+
+.zoom {
+  margin-right: 100px;
+}
+
+.next {
+  top: 50%;
+  right: 20px;
+}
+
+.prev {
+  top: 50%;
+  left: 10px;
+}
