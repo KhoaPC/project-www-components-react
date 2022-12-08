@@ -6,7 +6,6 @@ import Home from "./pages/Home/Home";
 import DemoOTP from "./pages/DemoOTP/DemoOTP";
 import Page404 from "./pages/Page404/Page404";
 import DemoImg from "./pages/DemoImg/DemoImg";
- 
 
 function App() {
   return (

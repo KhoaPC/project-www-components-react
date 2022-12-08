@@ -1,7 +1,26 @@
+import { Route, Router, Routes } from "react-router";
+import { Link } from "react-router-dom";
+import images from "../../assets/img";
+import "./Home.css";
+
 function Home() {
   return (
-    <div className="container">
-      <h1>Hello Home</h1>
+    <div className="container-home">
+      <h1 className="title-page">Preview Demo Page</h1>
+      <div className="container-product">
+        <div className="product">
+          <Link to="/OTP">
+            <img className="img-product" src={images.zoom} />
+            <div className="title">OTP input</div>
+          </Link>
+        </div>
+        <div className="product">
+          <Link to="/img">
+            <div className="title">Zoom images</div>
+            <img className="img-product" src={images.zoom} />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
