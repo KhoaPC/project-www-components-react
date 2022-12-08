@@ -6,7 +6,6 @@ import Form from "./Form";
 function DemoOTP() {
   const [num, setNum] = useState();
   const [separator, setSeparator] = useState();
-  const [placeholder, setPlaceholder] = useState();
 
   return (
     <div className="container">
@@ -23,15 +22,8 @@ function DemoOTP() {
           type="text"
           todoOnChange={(value) => setSeparator(value)}
         />
-
-        {/* <Form
-          label="Placeholder"
-          type="text"
-          todoOnChange={(value) => setPlaceholder(value)}
-        /> */}
       </nav>
-
-      <OTP inputNum={num} separator={separator} placeholder={placeholder}></OTP>
+      <OTP inputNum={num} separator={separator}></OTP>
     </div>
   );
 }

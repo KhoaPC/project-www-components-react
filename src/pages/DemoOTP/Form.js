@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Form2({ label, type, numMax, todoOnChange }) {
+export default function Form({ label, type, numMax, todoOnChange }) {
   const handler = (event) => {
     if (+event.target.value > numMax) {
       event.target.value = numMax;
@@ -10,8 +10,8 @@ export default function Form2({ label, type, numMax, todoOnChange }) {
 
   return (
     <div className="form">
-      <label className="title">{label}</label>
+      <label className="title-input">{label}</label>
       <input type={type} onChange={(event) => handler(event)} />
     </div>
   );
-} // Form2
+} // Form

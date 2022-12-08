@@ -1,22 +1,25 @@
-
-.navbar{
-    margin-left: 40px;
+.container {
+  flex-direction: row;
 }
- 
+
+.navbar {
+  margin-left: 40px;
+}
+
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
 .form input {
-    height: 28px;
-    font-size: 18px;
-    color: #333;
-    padding: 6px;
+  height: 28px;
+  font-size: 18px;
+  color: #333;
+  padding: 6px;
 }
 
-.form .title{
-    color: #888;
-    margin: 20px 0 6px 0;
+.form .title-input {
+  color: #888;
+  margin: 20px 0 6px 0;
 }
-

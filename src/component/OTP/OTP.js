@@ -24,10 +24,11 @@ function OTP({ inputNum, separator, placeholder }) {
           return (
             <div className="wrap-input" key={index}>
               <Input
+                length={output.length}
                 placeholder={placeholder}
-                focused={index === currentCharIndex}
                 value={output[index]}
                 index={index}
+                currentIndex={currentCharIndex}
                 setNewIndex={(index) => setCurrentCharIndex(index)}
                 updateValue={updateChar}
               />

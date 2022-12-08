@@ -1,62 +1,82 @@
 import { useRef, useEffect, useState } from "react";
+import E from "react-script";
 
 function Input({
-  focused,
+  currentIndex,
   value,
   index,
   updateValue,
   setNewIndex,
-  placeholder,
+  length,
 }) {
+  const KEY_BACKSPACE = "Backspace";
+  const KEY_ARROW_RIGHT = "ArrowRight";
+  const KEY_ARROW_LEFT = "ArrowLeft";
+  const c = console.log;
   const [myValue, setMyValue] = useState(value);
   const [isBackSpace, setIsBackSpace] = useState();
   const ref = useRef();
 
   useEffect(() => {
-    if (focused) {
+    if (currentIndex === index) {
       ref.current.focus();
       ref.current.select();
     }
-  }, [focused]);
+  }, [currentIndex]);
 
   const handlerKeyDown = (event) => {
-    const KEY_NAME_BACKSPACE = "Backspace";
-    setIsBackSpace(event.key === KEY_NAME_BACKSPACE);
+    setIsBackSpace(event.key === KEY_BACKSPACE);
 
-    if (event.key === KEY_NAME_BACKSPACE && event.target.value) {
-      setNewIndex(index);
-    } else if (event.key === KEY_NAME_BACKSPACE && !event.target.value) {
-      event.preventDefault();
-      setNewIndex(index - 1);
-    } else if (event.key === KEY_NAME_BACKSPACE) {
-      setNewIndex(index - 1);
+    if(event.ctrlKey) {
+      return;
     }
-    return;
+
+    if (event.key === KEY_BACKSPACE && event.target.value) {
+      setNewIndex(index);
+    } else if (event.key === KEY_BACKSPACE && !event.target.value) {
+      event.preventDefault();
+      setNewIndex((prev) => --prev);
+    } else if (event.key === KEY_BACKSPACE) {
+      setNewIndex((prev) => --prev);
+    } else if (event.key === KEY_ARROW_LEFT) {
+      event.preventDefault();
+      setNewIndex((prev) => --prev);
+    } else if (event.key === KEY_ARROW_RIGHT) {
+      event.preventDefault();
+      setNewIndex((prev) => ++prev);
+    }
+
+    if (ref.current.value.length > 0 && event.key.length === 1) {
+      setNewIndex((prev) => ++prev);
+    }
+
+    setNewIndex((prev) => {
+      return (prev = Math.max(0, Math.min(length, prev)));
+    });
   };
 
   const handlerOnchange = () => {
-    setIsBackSpace((prev) => {
-      if (!ref.current.value) {
-        return !prev;
-      }
-    });
-
     setMyValue(ref.current.value);
     updateValue(index, ref.current.value);
 
-    if (isBackSpace) setNewIndex(index - 1);
-    else if (ref.current.value !== "") setNewIndex(index + 1);
-    return;
+    if (isBackSpace) {
+      setNewIndex((prev) => --prev);
+    }
+    if (ref.current.value !== "") {
+      setNewIndex((prev) => ++prev);
+    }
   };
 
   return (
     <>
       <input
-        placeholder={placeholder}
+        onFocus={() => setNewIndex(index)}
         ref={ref}
-        onKeyDown={handlerKeyDown}
+        onKeyDown={(event) => {
+          handlerKeyDown(event);
+        }}
         onChange={handlerOnchange}
-        className={`input`}
+        className="input"
         maxLength={1}
         required
         value={myValue || ""}
