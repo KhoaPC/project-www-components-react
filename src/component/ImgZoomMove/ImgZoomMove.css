@@ -1,0 +1,48 @@
+#img {
+    width: 400px;
+    height: 400px;
+    aspect-ratio: auto 400 / 400;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin: 0px 0 0 30px ;
+}
+
+#len {
+  position: absolute;
+  border: 1.5px solid red;
+  width: 40px;
+  height: 40px;
+}
+
+#result {
+  position: absolute;
+  left: 420px;
+  border: 1px solid #484848;
+  width: 400px;
+  height: 400px;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  cursor: none;
+}
+
+.container-mini-img{
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
+.img-mini{
+  cursor: pointer;
+  max-width:  100px;
+  min-width:  100px;
+  max-height:  100px;
+  min-height:  100px;
+  border: 1px solid #888;
+  margin: 1px;
+}

@@ -1,22 +1,27 @@
 .overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  z-index: 9999999;
 }
 
-.icon{
+.icon {
   font-size: 30px;
   position: absolute;
   right: 20px;
   top: 20px;
   cursor: pointer;
-  z-index: 100000000000000000;
+  z-index: 1000000000;
+}
+
+.close {
+  font-weight: 500;
+  color: black;
 }
 
 .zoom-out {
@@ -35,4 +40,43 @@
 .prev {
   top: 50%;
   left: 10px;
+  right: 95%;
+}
+
+.container-img {
+  display: flex;
+  margin: 200px auto;
+}
+
+.img-mini {
+  max-height: 160px;
+  margin: auto;
+  border: 0.1px solid black;
+  transition: transform 0.6s;
+}
+
+.container-one-img {
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 100%;
+  transition: transform 0.3s;
+  transform-origin: 0px 0px;
+}
+
+.img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  pointer-events: none;
+  cursor: zoom-in;
 }
