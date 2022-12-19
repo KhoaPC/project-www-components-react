@@ -1,5 +1,5 @@
 import "./DemoImg.css";
-import ControllerImg from "./ControllerImg";
+import ControllerImg from "./ImgZoomClick";
 import { useState } from "react";
 import ImgZoomMove from "../../component/ImgZoomMove/ImgZoomMove";
 import images from "../../assets/img";
