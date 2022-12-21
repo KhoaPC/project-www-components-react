@@ -4,7 +4,7 @@ import OTP from "../../component/OTP/OTP";
 import Form from "./Form";
 
 function DemoOTP() {
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState(0);
   const [separator, setSeparator] = useState("");
   const [isDisable, setIsDisable] = useState(false);
   const [isNumber, setIsNumber] = useState(false);
@@ -58,7 +58,7 @@ function DemoOTP() {
             todoOnChange={(value) => setIsPassword(value)}
           />
           <Form
-            label="isDisable"
+            label="isDisabled"
             type="checkbox"
             todoOnChange={(value) => setIsDisable(value)}
           />
