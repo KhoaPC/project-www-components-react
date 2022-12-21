@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import E from "react-script";
 
 function Input({
   currentIndex,
@@ -8,11 +7,13 @@ function Input({
   updateValue,
   setNewIndex,
   length,
+  type,
+  style,
+  disabled,
 }) {
   const KEY_BACKSPACE = "Backspace";
   const KEY_ARROW_RIGHT = "ArrowRight";
   const KEY_ARROW_LEFT = "ArrowLeft";
-  const c = console.log;
   const [myValue, setMyValue] = useState(value);
   const [isBackSpace, setIsBackSpace] = useState();
   const ref = useRef();
@@ -27,7 +28,7 @@ function Input({
   const handlerKeyDown = (event) => {
     setIsBackSpace(event.key === KEY_BACKSPACE);
 
-    if(event.ctrlKey) {
+    if (event.ctrlKey) {
       return;
     }
 
@@ -70,6 +71,8 @@ function Input({
   return (
     <>
       <input
+        disabled={disabled}
+        style={style}
         onFocus={() => setNewIndex(index)}
         ref={ref}
         onKeyDown={(event) => {
@@ -80,6 +83,7 @@ function Input({
         maxLength={1}
         required
         value={myValue || ""}
+        type={type}
       />
     </>
   );

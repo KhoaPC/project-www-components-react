@@ -1,15 +1,24 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .container {
   flex-direction: row;
 }
 
 .navbar {
-  margin-left: 40px;
+  height: 100%;
+    box-shadow: 1px 0 1px 0px;
+    margin: 48px 0 0 49px;
+    padding-right: 40px;
 }
 
 .form {
   display: flex;
-  flex-direction: column;
   margin-top: 10px;
+  flex-direction: row;
 }
 
 .form input {
@@ -20,6 +29,40 @@
 }
 
 .form .title-input {
-  color: #888;
+  color: #666;
   margin: 20px 0 6px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-input.check {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.title-input.check input {
+  margin-right: 5px;
+  width: 15px;
+}
+
+.info {
+  position: absolute;
+  top: 130px;
+  left: 350px;
+}
+
+.info-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.info-output {
+  align-items: center;
+  display: flex;
+}
+
+.result {
+  margin-left: 10px;
 }
