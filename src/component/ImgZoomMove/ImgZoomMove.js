@@ -1,26 +1,22 @@
 import { useEffect, useRef } from "react";
 import "./ImgZoomMove.css";
 
-function ImgZoomMove({ urlImg, imgSize, resultSize, click }) {
+function ImgZoomMove({ urlImg, imgSize, resultSize, setImgControll, setShowControll }) {
   const refImg = useRef();
   const refResult = useRef();
   const refLen = useRef();
-  
+
   useEffect(() => {
     const cx = refResult.current.offsetWidth / refLen.current.offsetWidth;
     const cy = refResult.current.offsetHeight / refLen.current.offsetHeight;
-    console.log(refResult.current.offsetHeight)
-    console.log(cy)
-    console.log(refImg.current.height)
+ 
     setTimeout(() => {
       refResult.current.style.backgroundImage = `url("${urlImg}")`;
-      refResult.current.style.backgroundSize = `${refImg.current.width * cx}px ${
-        refImg.current.height * cy
-      }px`;
+      refResult.current.style.backgroundSize = `${
+        refImg.current.width * cx
+      }px ${refImg.current.height * cy}px`;
     }, 300);
     refResult.current.classList.add("hide");
-    
-   
 
     if (imgSize) {
       refImg.current.style.width = `${imgSize}px`;
@@ -95,7 +91,14 @@ function ImgZoomMove({ urlImg, imgSize, resultSize, click }) {
 
   return (
     <div id="container">
-      <div onClick={() => click(urlImg)} ref={refLen} id="len"></div>
+      <div
+        onClick={() => {
+          setShowControll(true);
+          setImgControll(urlImg);
+        }}
+        ref={refLen}
+        id="len"
+      ></div>
       <img ref={refImg} id="img" src={urlImg} />
       <div ref={refResult} id="result"></div>
     </div>

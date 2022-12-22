@@ -1,6 +1,6 @@
 import "./DemoImg.css";
-import ControllerImg from "./ImgZoomClick";
-import { useState } from "react";
+import ControllerImg from "./ShowImg";
+import { useEffect, useState } from "react";
 import ImgZoomMove from "../../component/ImgZoomMove/ImgZoomMove";
 import images from "../../assets/img";
 import MiniImg from "./MiniImg";
@@ -9,10 +9,6 @@ function DemoImg() {
   const [showControll, setShowControll] = useState(false);
   const [imgControll, setImgControll] = useState(images.zoom);
   const [zoomMoveImg, setZoomMoveImg] = useState(images.zoom);
-
-  const handlerOpenControll = () => {
-    setShowControll(true);
-  };
 
   const handlerPrevImg = () => {
     console.log("Prev");
@@ -27,10 +23,10 @@ function DemoImg() {
   };
 
   return (
-    <div className="container">
+    <div className="content">
       {showControll && (
         <ControllerImg
-          close={handlerClose}
+          handlerClose={handlerClose}
           next={handlerNextImg}
           prev={handlerPrevImg}
           ulrImg={imgControll}
@@ -38,10 +34,8 @@ function DemoImg() {
       )}
 
       <ImgZoomMove
-        click={(img) => {
-          setImgControll(img);
-          handlerOpenControll();
-        }}
+        setShowControll={(value) => setShowControll(value)}
+        setImgControll={(img) => setImgControll(img)}
         urlImg={zoomMoveImg}
       ></ImgZoomMove>
 

@@ -2,16 +2,11 @@ import "./DemoImg.css";
 import OneImg from "./ImgZoomClick";
 import images from "../../assets/img";
 
-function ControllerImg({
-  ulrImg,
-  close,
-  prev,
-  next,
-}) {
+function ControllerImg({ ulrImg, handlerClose, prev, next }) {
   return (
     <div className="overlay">
       <div>
-        <span onClick={() => close()} className="icon close">
+        <span onClick={() => handlerClose()} className="icon close">
           X
         </span>
 
@@ -23,8 +18,7 @@ function ControllerImg({
         </span> */}
       </div>
 
-      <OneImg img={ulrImg }></OneImg>
-       
+      <OneImg img={ulrImg}></OneImg>
     </div>
   );
 }
