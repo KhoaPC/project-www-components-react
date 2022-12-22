@@ -10,8 +10,8 @@ function Home() {
       <div className="container-product">
         <div className="product">
           <Link to="/OTP">
-            <img className="img-product" src={images.zoom} />
             <div className="title">OTP input</div>
+            <img className="img-product" src={images.otp_home} />
           </Link>
         </div>
         <div className="product">

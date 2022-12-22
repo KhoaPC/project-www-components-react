@@ -80,3 +80,7 @@
   pointer-events: none;
   cursor: zoom-in;
 }
+
+.content {
+  margin-top: 80px;
+}

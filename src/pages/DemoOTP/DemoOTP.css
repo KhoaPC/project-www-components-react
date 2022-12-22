@@ -10,9 +10,9 @@ input::-webkit-inner-spin-button {
 
 .navbar {
   height: 100%;
-    box-shadow: 1px 0 1px 0px;
-    margin: 48px 0 0 49px;
-    padding-right: 40px;
+  box-shadow: 1px 0 1px 0px #999;
+  margin: 48px 0 0 49px;
+  padding-right: 40px;
 }
 
 .form {
