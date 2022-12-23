@@ -7,15 +7,29 @@ function Input({
   updateValue,
   setNewIndex,
   length,
-  type,
   style,
   disabled,
+  isPassword,
+  isNumber,
 }) {
   const KEY_BACKSPACE = "Backspace";
   const KEY_ARROW_RIGHT = "ArrowRight";
   const KEY_ARROW_LEFT = "ArrowLeft";
   const [myValue, setMyValue] = useState(output[index]);
+  const [typeInput, setType] = useState("");
   const ref = useRef();
+
+  useEffect(() => {
+    if (isNumber && isPassword) {
+      setType("password");
+    } else if (isPassword) {
+      setType("password");
+    } else if (isNumber) {
+      setType("tel");
+    } else setType("");
+  }, [isNumber, isPassword]);
+
+  useEffect(() => {}, [myValue]);
 
   useEffect(() => {
     const clear = output.every((item) => {
@@ -29,7 +43,6 @@ function Input({
       ref.current.focus();
       ref.current.select();
     }
-    // console.log(currentIndex);
   }, [currentIndex]);
 
   const handlerKeyDown = (event) => {
@@ -70,8 +83,15 @@ function Input({
 
   const handlerOnchange = (event) => {
     event.preventDefault();
-    setMyValue(ref.current.value);
+    if (isNumber && !+ref.current.value) {
+      setMyValue(myValue);
+      setNewIndex((prev) => --prev);
+    } else {
+      setMyValue(ref.current.value);
+    }
+
     updateValue(index, ref.current.value);
+
     if (ref.current.value !== "") {
       if (length == currentIndex + 1) {
         return;
@@ -97,7 +117,7 @@ function Input({
         maxLength={1}
         required
         value={myValue || ""}
-        type={type}
+        type={typeInput}
       />
     </>
   );

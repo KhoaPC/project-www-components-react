@@ -20,20 +20,15 @@ function OTP({
   useEffect(() => {
     setOutput(Array.from({ length: inputNum }));
   }, [inputNum]);
-  const [type, setType] = useState("");
   const [style, setStyle] = useState({});
 
   useEffect(() => {
-    if (isNumber) {
-      setType("number");
-    } else if (isPassword) {
-      setType("password");
-    } else if (hasErrored) {
+    if (hasErrored)
       setStyle({
         border: "1px solid red",
       });
-    }
-  }, [isNumber, isDisable, isPassword, hasErrored]);
+    else setStyle({});
+  }, [ isDisable, hasErrored]);
 
   const updateChar = (index, value) => {
     return setOutput((current) =>
@@ -66,9 +61,10 @@ function OTP({
               return (
                 <div className="wrap-input" key={index}>
                   <Input
+                    isNumber={isNumber}
+                    isPassword={isPassword}
                     disabled={isDisable}
                     style={style}
-                    type={type}
                     length={output.length}
                     placeholder={placeholder}
                     output={output}
