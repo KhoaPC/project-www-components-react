@@ -1,19 +1,24 @@
 .container_OTP {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  margin-top: 48px;
 }
 
 .input {
-  max-width: 40px;
-  min-height: 40px;
+  max-width: 45px;
+  min-height: 45px;
   font-size: 30px;
   text-align: center;
   color: #333;
 }
 
-.input::placeholder{
-  color: #bcbcbc ;
+.input::placeholder {
+  color: #bcbcbc;
 }
 
 .separator {
@@ -23,4 +28,55 @@
 .wrap-input {
   display: flex;
   align-items: center;
+}
+
+.modal-otp {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: white;
+  padding: 0 20px 0 40px;
+  box-shadow: 0 0 8px -7px;
+  margin-bottom: 40px;
+  border-radius: 22px;
+}
+
+.modal-otp h2 {
+  margin: 22px 18px 0 0px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #666;
+}
+
+.modal-otp .code-otp {
+  margin: 10px 18px 0 0;
+}
+
+.container-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+}
+
+.wrap-btn {
+  height: 20%;
+  margin-right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.wrap-btn button {
+  height: 35px;
+  width: 90px;
+  color: white;
+  background-color: #6e6ef8;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
 }
