@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 
 function Input({
   currentIndex,
-  value,
+  output,
   index,
   updateValue,
   setNewIndex,
@@ -14,41 +14,53 @@ function Input({
   const KEY_BACKSPACE = "Backspace";
   const KEY_ARROW_RIGHT = "ArrowRight";
   const KEY_ARROW_LEFT = "ArrowLeft";
-  const [myValue, setMyValue] = useState(value);
-  const [isBackSpace, setIsBackSpace] = useState();
+  const [myValue, setMyValue] = useState(output[index]);
   const ref = useRef();
+
+  useEffect(() => {
+    const clear = output.every((item) => {
+      return !item;
+    });
+    if (clear) setMyValue("");
+  }, [output]);
 
   useEffect(() => {
     if (currentIndex === index) {
       ref.current.focus();
       ref.current.select();
     }
+    // console.log(currentIndex);
   }, [currentIndex]);
 
   const handlerKeyDown = (event) => {
-    setIsBackSpace(event.key === KEY_BACKSPACE);
-
     if (event.ctrlKey) {
       return;
     }
 
-    if (event.key === KEY_BACKSPACE && event.target.value) {
-      setNewIndex(index);
+    if (event.key === KEY_BACKSPACE) {
+      event.preventDefault();
+      setMyValue("");
+      setNewIndex((prev) => --prev);
     } else if (event.key === KEY_BACKSPACE && !event.target.value) {
       event.preventDefault();
       setNewIndex((prev) => --prev);
     } else if (event.key === KEY_BACKSPACE) {
       setNewIndex((prev) => --prev);
-    } else if (event.key === KEY_ARROW_LEFT) {
+    }
+    if (event.key === KEY_ARROW_LEFT) {
       event.preventDefault();
       setNewIndex((prev) => --prev);
-    } else if (event.key === KEY_ARROW_RIGHT) {
+    }
+    if (event.key === KEY_ARROW_RIGHT) {
       event.preventDefault();
+      if (length == currentIndex + 1) return;
       setNewIndex((prev) => ++prev);
     }
-
-    if (ref.current.value.length > 0 && event.key.length === 1) {
-      setNewIndex((prev) => ++prev);
+    if (ref.current.value.length && event.key.length === 1) {
+      // un-selected
+      if (!(length == currentIndex + 1)) {
+        // setNewIndex((prev) => ++prev);
+      }
     }
 
     setNewIndex((prev) => {
@@ -56,15 +68,17 @@ function Input({
     });
   };
 
-  const handlerOnchange = () => {
+  const handlerOnchange = (event) => {
+    event.preventDefault();
     setMyValue(ref.current.value);
     updateValue(index, ref.current.value);
-
-    if (isBackSpace) {
-      setNewIndex((prev) => --prev);
-    }
     if (ref.current.value !== "") {
-      setNewIndex((prev) => ++prev);
+      if (length == currentIndex + 1) {
+        return;
+      } else {
+        // selected
+        setNewIndex((prev) => ++prev);
+      }
     }
   };
 
@@ -78,7 +92,7 @@ function Input({
         onKeyDown={(event) => {
           handlerKeyDown(event);
         }}
-        onChange={handlerOnchange}
+        onChange={(event) => handlerOnchange(event)}
         className="input"
         maxLength={1}
         required
