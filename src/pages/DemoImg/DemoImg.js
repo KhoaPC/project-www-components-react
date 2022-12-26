@@ -4,11 +4,26 @@ import { useEffect, useState } from "react";
 import ImgZoomMove from "../../component/ImgZoomMove/ImgZoomMove";
 import images from "../../assets/img";
 import MiniImg from "./MiniImg";
+import useDebounce from "../../utils/Debounce";
+const CONST_REGEX_CHECK_URL_IMAGE =
+  /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg))/i;
+const CONST_LENGTH_DEAFAULT = 4;
 
 function DemoImg() {
   const [showControll, setShowControll] = useState(false);
   const [imgControll, setImgControll] = useState(images.zoom);
   const [zoomMoveImg, setZoomMoveImg] = useState(images.zoom);
+  const [imgAdd, setImgAdd] = useState([
+    images.zoom,
+    images.img,
+    images.img_1,
+    images.img_2,
+  ]);
+  const [loaded, setLoaded] = useState(false);
+  document.title = 'Zoom Image';
+
+
+  useEffect(() => {}, [loaded]);
 
   const handlerPrevImg = () => {
     console.log("Prev");
@@ -20,6 +35,31 @@ function DemoImg() {
 
   const handlerClose = () => {
     setShowControll(false);
+  };
+
+  useEffect(() => {
+    if (imgAdd.length > CONST_LENGTH_DEAFAULT && !loaded)
+      setImgAdd((prev) => prev.slice(0, -1));
+  }, [loaded]);
+
+  const handlerAddImg = () => {
+    const url = window.prompt("Enter URL");
+
+    if (url === "") {
+      alert("Empty image URL");
+    } else if (url.match(CONST_REGEX_CHECK_URL_IMAGE)) {
+      setImgAdd((prev) => [...prev, url]);
+    } else alert("Invalid image URL");
+  };
+
+  const removeImg = (i) => {
+    if (window.confirm("Do you want to delete image?")) {
+      setImgAdd((prev) => {
+        return prev.filter((item, index) => {
+          return index !== i;
+        });
+      });
+    }
   };
 
   return (
@@ -40,30 +80,23 @@ function DemoImg() {
       ></ImgZoomMove>
 
       <div className="container-mini-img">
-        <MiniImg
-          click={(img) => {
-            setZoomMoveImg(img);
-          }}
-          img={images.img}
-        ></MiniImg>
-        <MiniImg
-          click={(img) => {
-            setZoomMoveImg(img);
-          }}
-          img={images.img_1}
-        ></MiniImg>
-        <MiniImg
-          click={(img) => {
-            setZoomMoveImg(img);
-          }}
-          img={images.img_2}
-        ></MiniImg>
-        <MiniImg
-          click={(img) => {
-            setZoomMoveImg(img);
-          }}
-          img={images.zoom}
-        ></MiniImg>
+        {imgAdd.map((item, index) => {
+          return (
+            <MiniImg
+              key={index}
+              getImg={(img) => {
+                setZoomMoveImg(img);
+              }}
+              removeImg={() => removeImg(index)}
+              img={item}
+              onLoad={() => setLoaded(true)}
+              onError={() => setLoaded(false)}
+            />
+          );
+        })}
+        <div onClick={handlerAddImg} className="add-img">
+          ➕
+        </div>
       </div>
     </div>
   );

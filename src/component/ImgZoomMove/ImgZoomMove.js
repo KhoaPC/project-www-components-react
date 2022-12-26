@@ -1,7 +1,13 @@
 import { useEffect, useRef } from "react";
 import "./ImgZoomMove.css";
 
-function ImgZoomMove({ urlImg, imgSize, resultSize, setImgControll, setShowControll }) {
+function ImgZoomMove({
+  urlImg,
+  imgSize,
+  resultSize,
+  setImgControll,
+  setShowControll,
+}) {
   const refImg = useRef();
   const refResult = useRef();
   const refLen = useRef();
@@ -9,7 +15,7 @@ function ImgZoomMove({ urlImg, imgSize, resultSize, setImgControll, setShowContr
   useEffect(() => {
     const cx = refResult.current.offsetWidth / refLen.current.offsetWidth;
     const cy = refResult.current.offsetHeight / refLen.current.offsetHeight;
- 
+
     setTimeout(() => {
       refResult.current.style.backgroundImage = `url("${urlImg}")`;
       refResult.current.style.backgroundSize = `${

@@ -1,12 +1,19 @@
-function MiniImg({click, img}) {
+function MiniImg({ getImg, img, removeImg, onLoad, onError }) {
   return (
-    <img
-      onClick={() => {
-        click(img);
-      }}
-      className="img-mini"
-      src={img}
-    />
+    <div className="wrap-img-mini">
+      <img
+        onClick={() => {
+          getImg(img);
+        }}
+        className="img-mini"
+        src={img}
+        onLoad={onLoad}
+        onError={onError}
+      />
+      <span onClick={removeImg} className="remove-img">
+        x
+      </span>
+    </div>
   );
 }
 
