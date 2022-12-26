@@ -84,7 +84,7 @@ function Input({
   const handlerOnchange = (event) => {
     event.preventDefault();
     if (isNumber && !+ref.current.value) {
-      setMyValue(myValue);
+      // setMyValue(myValue);
       setNewIndex((prev) => --prev);
     } else {
       setMyValue(ref.current.value);
@@ -112,6 +112,8 @@ function Input({
         onKeyDown={(event) => {
           handlerKeyDown(event);
         }}
+        min={0}
+        max={9}
         onChange={(event) => handlerOnchange(event)}
         className="input"
         maxLength={1}

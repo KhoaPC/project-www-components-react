@@ -35,6 +35,9 @@
 .container-mini-img{
   margin-left: 30px;
   margin-top: 15px;
+  display: flex;
+  max-width: 500px;
+  flex-wrap: wrap;
 }
 
 .img-mini{
@@ -46,3 +49,36 @@
   border: 1px solid #888;
   margin: 1px;
 }
+
+.add-img{
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  margin-left: 10px;  
+  cursor: pointer;
+  user-select: none;
+}
+.wrap-img-mini{
+  position: relative;
+}
+
+.wrap-img-mini:hover .remove-img {
+    opacity: 1;
+}
+
+.remove-img {
+  opacity: 0;
+  color: black;
+  background: white;
+  width: 14px;
+  position: absolute;
+  z-index: 9;
+  text-align: center;
+  right: 3px;
+  top: 3px;
+  border-radius: 500px;
+  cursor: pointer;
+  transition: .3s opacity;
+  user-select: none;
+}
+
