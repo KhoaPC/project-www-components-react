@@ -12,6 +12,7 @@ function DemoOTP() {
   const [isPassword, setIsPassword] = useState(false);
   const [randomOTP, setOTP] = useState(0);
   const [output, setOutput] = useState(Array.from({ length: num }));
+  document.title = 'OTP Input';
 
   const randomNum = (maxLength) => {
     setOTP(Math.floor(Math.random() * "1".padEnd(+maxLength + 1, 0)));

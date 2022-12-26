@@ -4,6 +4,8 @@ import images from "../../assets/img";
 import "./Home.css";
 
 function Home() {
+  document.title = 'React Component';
+
   return (
     <div className="container-home">
       <h1 className="title-page">Preview Demo Page</h1>
